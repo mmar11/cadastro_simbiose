@@ -31,4 +31,11 @@ async function deleteById(table, id) {
     return query
 }
 
-export { insertData, consultAll, consultById, deleteById }
+async function updateByID(table, param) {
+
+    let insert = await conexao(`UPDATE ${table} SET nome_pessoa = ? , email_pessoa = ? , nasc_pessoa = ? , ued_pessoa = ?   WHERE id_pessoas = ?`, param);
+    return insert
+}
+
+
+export { insertData, consultAll, consultById, deleteById, updateByID }

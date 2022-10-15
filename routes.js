@@ -1,6 +1,6 @@
 import { Router } from "express"
 const routes = Router()
-import { controlInicio, controlGetById, controlInsert, controlDeleteById } from "./src/controller/control.js"
+import { controlInicio, controlGetById, controlInsert, controlDeleteById, controlUpdateById } from "./src/controller/control.js"
 
 
 
@@ -10,15 +10,11 @@ routes.get('/', function (req, res) {
 
 routes.get('/pessoas', controlInicio)
 
-
 routes.post('/pessoa', controlInsert)
-
 
 routes.get('/pessoa/:id', controlGetById)
 
-routes.put('/pessoa/:id', function (req, res) {
-    res.send('altera p id')
-})
+routes.put('/pessoa/:id', controlUpdateById)
 
 routes.delete('/pessoa/:id', controlDeleteById)
 

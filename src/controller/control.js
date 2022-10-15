@@ -1,4 +1,4 @@
-import { consultAll, consultById, insertData, deleteById } from "../module/connection/service.js"
+import { consultAll, consultById, insertData, deleteById, updateByID } from "../module/connection/service.js"
 
 
 const TABLE = "pessoas"
@@ -40,13 +40,29 @@ let controlDeleteById = async function (req, res) {
     let consulta = await deleteById(TABLE, id)
     if (consulta.affectedRows > 0) {
         res.send(`Item ${id} deleted`)
-
     }
 
+}
 
+let controlUpdateById = async function (req, res) {
+
+    let id = req.params.id
+    let { novoNome, novoEmail, novaDataNasc } = req.body
+    console.log(novoNome, novoEmail, novaDataNasc)
+    let param = [novoNome, novoEmail, novaDataNasc, new Date, id]
+    console.log(param)
+
+    let insert = await updateByID(TABLE, param)
+
+    res.send(insert)
+    // if (insert.insertId) {
+    //     let id = [insert.insertId]
+    //     let consulta = await consultById(TABLE, id)
+    //     res.send(consulta)
+    // }
 }
 
 
 
 
-export { controlInicio, controlGetById, controlInsert, controlDeleteById }
+export { controlInicio, controlGetById, controlInsert, controlDeleteById, controlUpdateById }
