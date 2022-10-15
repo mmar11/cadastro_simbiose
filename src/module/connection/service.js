@@ -25,4 +25,10 @@ async function consultById(table, id) {
     return query
 }
 
-export { insertData, consultAll, consultById }
+async function deleteById(table, id) {
+
+    let query = await conexao(`DELETE FROM ${table} WHERE id_pessoas = ? `, id);
+    return query
+}
+
+export { insertData, consultAll, consultById, deleteById }

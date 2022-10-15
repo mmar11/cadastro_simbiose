@@ -1,4 +1,4 @@
-import { consultAll, consultById, insertData } from "../module/connection/service.js"
+import { consultAll, consultById, insertData, deleteById } from "../module/connection/service.js"
 
 
 const TABLE = "pessoas"
@@ -22,8 +22,8 @@ let controlGetById = async function (req, res) {
 let controlInsert = async function (req, res) {
 
     let { name, email, data_nasc } = req.body
-    let data = [name, email, data_nasc]
-    const COLS = 'nome_pessoa , email_pessoa , nasc_pessoa'
+    let data = [name, email, data_nasc, new Date]
+    const COLS = 'nome_pessoa , email_pessoa , nasc_pessoa , ued_pessoa'
 
     let insert = await insertData(TABLE, COLS, data)
 
@@ -32,8 +32,16 @@ let controlInsert = async function (req, res) {
         let consulta = await consultById(TABLE, id)
         res.send(consulta)
     }
+}
 
+let controlDeleteById = async function (req, res) {
 
+    let id = [req.params.id]
+    let consulta = await deleteById(TABLE, id)
+    if (consulta.affectedRows > 0) {
+        res.send(`Item ${id} deleted`)
+
+    }
 
 
 }
@@ -41,5 +49,4 @@ let controlInsert = async function (req, res) {
 
 
 
-
-export { controlInicio, controlGetById, controlInsert }
+export { controlInicio, controlGetById, controlInsert, controlDeleteById }
