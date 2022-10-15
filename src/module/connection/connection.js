@@ -1,10 +1,10 @@
 
-import mysql from 'mysql2';
+import mysql from 'mysql2/promise';
 import * as dotenv from 'dotenv'
 dotenv.config()
 
 // create the connection to database
-const connection = mysql.createPool({
+const connection = await mysql.createPool({
     host: process.env.HOST,
     user: process.env.USER,
     database: process.env.DATABASE,
@@ -13,17 +13,8 @@ const connection = mysql.createPool({
 
 
 
-function conexao(sqlquery, place) {
-    connection.execute(sqlquery,
-        place,
-        function (err, results, fields) {
-            if (results) {
-                console.log(results);
-                console.log(fields);
-            }
-            else { err }
-        }
-    );
+export async function conexao(sqlquery, place) {
+    let [rows, fields] = await connection.execute(sqlquery, place)
+    return rows
 }
 
-export default conexao 

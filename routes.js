@@ -1,19 +1,20 @@
 import { Router } from "express"
 const routes = Router()
+import { controlInicio, controlGetById, controlInsert } from "./src/controller/control.js"
 
 
 
 routes.get('/', function (req, res) {
-    res.send('tela inicial')
+    res.send('Tela de inicio')
 })
 
-routes.post('/pessoa', function (req, res) {
-    res.send('inclui pessoa')
-})
+routes.get('/pessoas', controlInicio)
 
-routes.get('/pessoa/:id', function (req, res) {
-    res.send('consulta p id')
-})
+
+routes.post('/pessoa', controlInsert)
+
+
+routes.get('/pessoa/:id', controlGetById)
 
 routes.put('/pessoa/:id', function (req, res) {
     res.send('altera p id')
@@ -23,9 +24,7 @@ routes.delete('/pessoa/:id', function (req, res) {
     res.send('deleta p Id')
 })
 
-routes.get('/pessoas', function (req, res) {
-    res.send('consulta pessoas cadastradas')
-})
+
 
 
 export default routes

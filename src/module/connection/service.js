@@ -1,22 +1,6 @@
-import conexao from "./connection.js"
+import { conexao } from "./connection.js"
 
-
-//SELEC / .selectall - Define the table you wish to access - string
-let table = ""
-
-//SELECT / .selectcolDefine - the column you wish to SELECT - string
-let column = ''
-
-//INSERT / .insert - Define the params to INSERT - array of strings
-let param = [];
-
-//INSERT / .insert - Define a string with the column fields of the table, separate by ( , ) - string
-let colinsert = ""
-
-
-
-
-let valinsert = () => {
+let valinsert = (param) => {
     let val = "? "
     for (let i = 0; i < (param.length - 1); i++) {
         val += ", ? "
@@ -24,12 +8,21 @@ let valinsert = () => {
     return val
 }
 
+async function insertData(table, colinsert, param) {
 
-let query = {
-    selectall: `SELECT * FROM ${table}`,
-    selectcol: `SELECT * FROM ${table} WHERE ${column} = ? `,
-    insert: `INSERT INTO ${table} (${colinsert}) VALUES(${valinsert()})`
+    let insert = await conexao(`INSERT INTO ${table} (${colinsert}) VALUES(${valinsert(param)})`, param);
+    return insert
 }
 
-//Define the query.
-conexao(query, param);
+async function consultAll(table) {
+
+    let query = await conexao(`SELECT * FROM ${table}`)
+    return query
+}
+
+async function consultById(table, id) {
+    let query = await conexao(`SELECT * FROM ${table} WHERE id_pessoas = ? `, id);
+    return query
+}
+
+export { insertData, consultAll, consultById }
