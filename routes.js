@@ -1,12 +1,10 @@
 import { Router } from "express"
 const routes = Router()
-import { controlInicio, controlGetById, controlInsert, controlDeleteById, controlUpdateById } from "./src/controller/control.js"
+import { controlInicio, controlGetById, controlInsert, controlDeleteById, controlUpdateById, controlIndex } from "./src/controller/control.js"
 
 
 
-routes.get('/', function (req, res) {
-    res.send('Tela de inicio')
-})
+routes.get('/', controlIndex)
 
 routes.get('/pessoas', controlInicio)
 

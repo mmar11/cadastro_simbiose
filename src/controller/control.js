@@ -3,12 +3,15 @@ import { consultAll, consultById, insertData, deleteById, updateByID } from "../
 
 const TABLE = "pessoas"
 
+let controlIndex = function (req, res) {
+    res.render('./index.ejs')
+}
+
 let controlInicio = async function (req, res) {
 
     let consulta = await consultAll(TABLE)
-    // console.log(consulta)
 
-    res.send(consulta)
+    res.render('pessoas.ejs', { consulta: consulta })
 }
 
 let controlGetById = async function (req, res) {
@@ -61,4 +64,4 @@ let controlUpdateById = async function (req, res) {
 
 
 
-export { controlInicio, controlGetById, controlInsert, controlDeleteById, controlUpdateById }
+export { controlInicio, controlGetById, controlInsert, controlDeleteById, controlUpdateById, controlIndex }
