@@ -26,7 +26,7 @@ routes.get('/pessoa', c.controlFormInsert)
 routes.get('/buscarpessoa', c.controlBuscarPessoa)
 routes.get('/pessoaed/:id', c.controlUpdate)
 routes.post('/pessoaed/:id', upload.none(), cfront.controlFrontUpdate)
-routes.get('/pessoaex/:id', upload.none(), cfront.controlFrontDelete)
+routes.get('/pessoaex/:id', cfront.controlFrontDelete)
 
 
 

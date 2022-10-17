@@ -4,7 +4,7 @@ let controlFrontUpdate = async function (req, res) {
 
     let id = req.params.id
     let body = req.body
-    const response = await fetch(`http://localhost:3000/pessoa/${id}`, {
+    const response = await fetch(`https://cadastrosimbiose.herokuapp.com/pessoa/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -21,11 +21,11 @@ let controlFrontUpdate = async function (req, res) {
 let controlFrontDelete = async function (req, res) {
 
     let id = req.params.id
-    const response = await fetch(`http://localhost:3000/pessoa/${id}`, {
+    const response = await fetch(`https://cadastrosimbiose.herokuapp.com/pessoa/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
-        },
+        }
 
     }).then((response) => response.json())
         .then((data) => {
