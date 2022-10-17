@@ -1,23 +1,31 @@
 import { Router } from "express"
 const routes = Router()
-import { controlInicio, controlGetById, controlInsert, controlDeleteById, controlUpdateById, controlIndex, controlBuscarPessoa } from "./src/controller/control.js"
+import * as c from "./src/controller/control.js"
+import * as cfront from "./src/controller/controlfront.js"
 import multer from 'multer'
+
 const upload = multer({ dest: 'uploads/' })
 
 
-routes.get('/', controlIndex)
+routes.get('/', c.controlIndex)
 
-routes.get('/pessoas', controlInicio)
+routes.get('/pessoas', c.controlInicio)
 
-routes.post('/pessoa', controlInsert)
+routes.get('/pessoa', c.controlFormInsert)
 
-routes.get('/pessoa/:id', upload.none(), controlGetById)
+routes.post('/pessoa', upload.none(), c.controlInsert)
 
-routes.get('/buscarpessoa', controlBuscarPessoa)
+routes.get('/pessoa/:id', upload.none(), c.controlGetById)
 
-routes.put('/pessoa/:id', controlUpdateById)
+routes.get('/buscarpessoa', c.controlBuscarPessoa)
 
-routes.delete('/pessoa/:id', controlDeleteById)
+routes.get('/pessoaed/:id', c.controlUpdate)
+routes.post('/pessoaed/:id', upload.none(), cfront.controlFrontUpdate)
+
+
+routes.put('/pessoa/:id', c.controlUpdateById)
+
+routes.delete('/pessoa/:id', c.controlDeleteById)
 
 
 

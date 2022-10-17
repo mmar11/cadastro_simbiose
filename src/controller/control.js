@@ -17,7 +17,7 @@ let controlGetById = async function (req, res) {
 
     let id = [req.params.id]
     let consulta = await consultById(TABLE, id)
-    res.render('pesssoaid.ejs', { consulta: consulta })
+    res.render('pessoaid.ejs', { consulta: consulta })
 }
 
 
@@ -29,10 +29,17 @@ let controlBuscarPessoa = async function (req, res) {
     res.redirect(`/pessoa/${id}`)
 }
 
+
+
+let controlFormInsert = async function (req, res) {
+
+    res.render('include.ejs')
+}
+
 let controlInsert = async function (req, res) {
 
-    let { name, email, data_nasc } = req.body
-    let data = [name, email, data_nasc, new Date]
+    let { nome, email, datanasc } = req.body
+    let data = [nome, email, datanasc, new Date]
     const COLS = 'nome_pessoa , email_pessoa , nasc_pessoa , ued_pessoa'
 
     let insert = await insertData(TABLE, COLS, data)
@@ -40,9 +47,15 @@ let controlInsert = async function (req, res) {
     if (insert.insertId) {
         let id = [insert.insertId]
         let consulta = await consultById(TABLE, id)
-        res.send(consulta)
+        res.render('dataincluded.ejs', { consulta: consulta })
+    }
+    else {
+        res.redirect('/')
     }
 }
+
+
+
 
 let controlDeleteById = async function (req, res) {
 
@@ -54,16 +67,27 @@ let controlDeleteById = async function (req, res) {
 
 }
 
+let controlUpdate = async function (req, res, next) {
+
+    let id = [req.params.id]
+    let consulta = await consultById(TABLE, id)
+    res.render('update.ejs', { consulta })
+    // res.send(consulta)
+
+}
+
 let controlUpdateById = async function (req, res) {
 
     let id = req.params.id
     let { novoNome, novoEmail, novaDataNasc } = req.body
     let param = [novoNome, novoEmail, novaDataNasc, new Date, id]
+    console.log(param)
 
     let insert = await updateByID(TABLE, param)
 
     if (insert.affectedRows) {
-        res.send(param)
+        let consulta = await consultById(TABLE, [id])
+        res.send(consulta)
     }
 }
 
@@ -71,4 +95,4 @@ let controlUpdateById = async function (req, res) {
 
 
 
-export { controlInicio, controlGetById, controlInsert, controlDeleteById, controlUpdateById, controlIndex, controlBuscarPessoa }
+export { controlInicio, controlGetById, controlInsert, controlDeleteById, controlUpdateById, controlIndex, controlBuscarPessoa, controlFormInsert, controlUpdate }
