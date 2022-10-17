@@ -81,7 +81,6 @@ let controlUpdateById = async function (req, res) {
     let id = req.params.id
     let { novoNome, novoEmail, novaDataNasc } = req.body
     let param = [novoNome, novoEmail, novaDataNasc, new Date, id]
-    console.log(param)
 
     let insert = await updateByID(TABLE, param)
 
