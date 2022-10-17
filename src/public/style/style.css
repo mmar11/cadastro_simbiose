@@ -53,6 +53,11 @@ html {
   background-color: #6dabcb;
 }
 
+#tablepess {
+  width: 95%;
+  margin: 20px auto;
+}
+
 .td-action,
 #edit,
 #delete,

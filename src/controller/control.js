@@ -10,7 +10,6 @@ let controlIndex = function (req, res) {
 let controlInicio = async function (req, res) {
 
     let consulta = await consultAll(TABLE)
-
     res.render('pessoas.ejs', { consulta: consulta })
 }
 
@@ -18,8 +17,16 @@ let controlGetById = async function (req, res) {
 
     let id = [req.params.id]
     let consulta = await consultById(TABLE, id)
+    res.render('pesssoaid.ejs', { consulta: consulta })
+}
 
-    res.send(consulta)
+
+let controlBuscarPessoa = async function (req, res) {
+
+    let id = req.query.id
+    // let consulta = await consultById(TABLE, id)
+    // console.log(consulta)
+    res.redirect(`/pessoa/${id}`)
 }
 
 let controlInsert = async function (req, res) {
@@ -64,4 +71,4 @@ let controlUpdateById = async function (req, res) {
 
 
 
-export { controlInicio, controlGetById, controlInsert, controlDeleteById, controlUpdateById, controlIndex }
+export { controlInicio, controlGetById, controlInsert, controlDeleteById, controlUpdateById, controlIndex, controlBuscarPessoa }

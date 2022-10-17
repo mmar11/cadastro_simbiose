@@ -22,14 +22,27 @@
         </li>
       </ul>
 
-      <form class="d-flex" role="search" enctype="multipart/form-data">
+      <form
+        class="d-flex"
+        role="search"
+        method="GET"
+        enctype="multipart/form-data"
+        action="/buscarpessoa"
+      >
         <input
           class="form-control me-2"
           type="search"
           placeholder="Pesquisa por ID"
           aria-label="Search"
+          name="id"
+          id="id"
         />
-        <button class="btn btn-outline-success" type="submit" id="btnsearch">
+        <button
+          class="btn btn-outline-success"
+          type="submit"
+          id="btnsearch"
+          onclick="onClick()"
+        >
           Pesquisar
         </button>
       </form>
