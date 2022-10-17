@@ -62,7 +62,7 @@ let controlDeleteById = async function (req, res) {
     let id = [req.params.id]
     let consulta = await deleteById(TABLE, id)
     if (consulta.affectedRows > 0) {
-        res.send(`Item ${id} deleted`)
+        res.send(consulta)
     }
 
 }

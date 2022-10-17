@@ -7,26 +7,26 @@ import multer from 'multer'
 const upload = multer({ dest: 'uploads/' })
 
 
+//rotas solicitadas
 routes.get('/', c.controlIndex)
-
-routes.get('/pessoas', c.controlInicio)
-
-routes.get('/pessoa', c.controlFormInsert)
 
 routes.post('/pessoa', upload.none(), c.controlInsert)
 
 routes.get('/pessoa/:id', upload.none(), c.controlGetById)
 
-routes.get('/buscarpessoa', c.controlBuscarPessoa)
-
-routes.get('/pessoaed/:id', c.controlUpdate)
-routes.post('/pessoaed/:id', upload.none(), cfront.controlFrontUpdate)
-
-
 routes.put('/pessoa/:id', c.controlUpdateById)
 
 routes.delete('/pessoa/:id', c.controlDeleteById)
 
+routes.get('/pessoas', c.controlInicio)
+
+
+//rotas auxiliares
+routes.get('/pessoa', c.controlFormInsert)
+routes.get('/buscarpessoa', c.controlBuscarPessoa)
+routes.get('/pessoaed/:id', c.controlUpdate)
+routes.post('/pessoaed/:id', upload.none(), cfront.controlFrontUpdate)
+routes.get('/pessoaex/:id', upload.none(), cfront.controlFrontDelete)
 
 
 

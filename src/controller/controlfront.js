@@ -4,7 +4,6 @@ let controlFrontUpdate = async function (req, res) {
 
     let id = req.params.id
     let body = req.body
-
     const response = await fetch(`http://localhost:3000/pessoa/${id}`, {
         method: 'PUT',
         headers: {
@@ -14,13 +13,25 @@ let controlFrontUpdate = async function (req, res) {
     }).then((response) => response.json())
         .then((data) => {
             let consulta = data
-            console.log(consulta)
             res.render('usrupdated.ejs')
         })
 
+}
 
+let controlFrontDelete = async function (req, res) {
 
+    let id = req.params.id
+    const response = await fetch(`http://localhost:3000/pessoa/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+    }).then((response) => response.json())
+        .then((data) => {
+            res.render('usrdeleted.ejs')
+        })
 
 }
 
-export { controlFrontUpdate }
+export { controlFrontUpdate, controlFrontDelete }
