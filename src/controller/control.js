@@ -24,8 +24,7 @@ let controlGetById = async function (req, res) {
 let controlBuscarPessoa = async function (req, res) {
 
     let id = req.query.id
-    // let consulta = await consultById(TABLE, id)
-    // console.log(consulta)
+
     res.redirect(`/pessoa/${id}`)
 }
 

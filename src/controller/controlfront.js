@@ -12,6 +12,7 @@ let controlFrontUpdate = async function (req, res) {
         body: JSON.stringify(body),
     }).then((response) => response.json())
         .then((data) => {
+
             let consulta = data
             res.render('usrupdated.ejs')
         })

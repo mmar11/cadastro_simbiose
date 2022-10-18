@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Não usamos pessoas</title>
+    <link rel="shortcut icon" href="/img/simb.png" type="image/x-icon" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -51,7 +52,7 @@
           type="date"
           id="novaDataNasc"
           name="novaDataNasc"
-          value="<%= consulta[0].nasc_pessoa %>"
+          value="<%= consulta[0].nasc_pessoa.toLocaleDateString('af-ZA') %>"
         />
       </div>
 
